@@ -4,7 +4,7 @@ Automatically generate types (classes) for explicitly defined styles in resource
 
 This screenshot shows part of the XAML file (above) and the automatically generated C# file (below).
 
-![screenshot showing a style and the accompanying generated calls](./assets/Style-and-generated-class.png)
+![screenshot showing a style and the accompanying generated class](./assets/Style-and-generated-class.png)
 
 Currently supporting .NET MAUI. _WPF, UWP, & WinUI support coming soon._
 
