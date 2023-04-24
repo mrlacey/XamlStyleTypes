@@ -16,7 +16,7 @@ A [Rapid XAML Toolkit](https://github.com/mrlacey/rapid-xaml-toolkit) experiment
 
 Automatically generate types/classes for explicitly defined XAML Styles.
 
-1. Install the extension.
+1. [Install the extension](https://marketplace.visualstudio.com/items?itemName=MattLaceyLtd.XamlStyleTypes).
 2. Set the `Custom Tool` for the ResourceDictionary to be `MauiTypeGenerator`.
 
 ![screenshot showing the custom tool being specified](./assets/custom-tool.png)
