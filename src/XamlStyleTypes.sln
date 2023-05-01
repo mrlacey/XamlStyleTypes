@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlStyleTypes", "XamlStyle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.Tasks", "..\RapidXaml.Tasks\RapidXaml.Tasks.csproj", "{6FEF5F2A-0277-487E-9B10-A5835084ABF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratorCore", "..\GeneratorCore\GeneratorCore.csproj", "{E26EDBBF-2E16-4B74-B854-63DE5C6BCDA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.GeneratorCore", "..\GeneratorCore\RapidXaml.GeneratorCore.csproj", "{E26EDBBF-2E16-4B74-B854-63DE5C6BCDA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -94,9 +94,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeneratorCore\GeneratorCore.csproj">
+    <ProjectReference Include="..\GeneratorCore\RapidXaml.GeneratorCore.csproj">
       <Project>{e26edbbf-2e16-4b74-b854-63de5c6bcda2}</Project>
-      <Name>GeneratorCore</Name>
+      <Name>RapidXaml.GeneratorCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
