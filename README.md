@@ -16,12 +16,23 @@ A [Rapid XAML Toolkit](https://github.com/mrlacey/rapid-xaml-toolkit) experiment
 
 Automatically generate types/classes for explicitly defined XAML Styles.
 
+### With a Visual Studio Extension
+
+For Visual Studio 2022 only.
+
 1. [Install the extension](https://marketplace.visualstudio.com/items?itemName=MattLaceyLtd.XamlStyleTypes).
 2. Set the `Custom Tool` for the ResourceDictionary to be `MauiStyleGenerator`.
 
 ![screenshot showing the custom tool being specified](./assets/custom-tool.png)
 
 3. Use the new types (automatically created in the new nested .cs file) in your XAML to make it shorter and easier to read and maintain.
+
+## With a NuGet package
+
+For anywhere you can build your app: Visual Studio, Visual Studio Code, and Rider.
+
+1. Add a reference to the [RapidXaml.CodeGen.Maui](https://www.nuget.org/packages/RapidXaml.CodeGen.Maui/) NuGet package to your project.
+2. [Optional] Configure input files and the generated namespace. (See below for details.)
 
 ## Why?
 
@@ -39,17 +50,32 @@ is easier to read, write, understand, and maintain; than
 
 ## How?
 
+This functionality is available in two forms. 
+
+1. As a Visual Studio extension.
+2. As a NuGet package.
+
+### Visual Studio Extension
+
 Visual Studio supports running "custom tools" against individual files within a project. This extension provides such a tool. Whenever the file is saved, the custom tool will produce types for each Style in the ResourceDictionary that has an `x:Key` specified.
+
+Use it against .xaml files that contain a ResourceDictionary that is merged into the App.Resource dictionary. Do not use for individual pages.
+
+### NuGet package
+
+The NuGet package adds an MSBuild task that is included when you build the project (or VS builds in the background.) 
+
+The task will generate files for all .xaml files it can find that include a `ResourceDictionary` as the root element.
+
+### In both methods
 
 Any implicit Styles (those without an `x:Key` defined) are ignored.
 
 Additionally, it creates lists of the names of defined Colors and Brushes. So, if you need to refer to them in your code-behind you don't have to use magic strings.
 
-Use it against .xaml files that contain a ResourceDictionary that is merged into the App.Resource dictionary. Do not use for individual pages.
+## Configuration (VSIX or NuGet methods)
 
-## Configuration
-
-It is possible to control the generated output in the following ways.
+It is possible to control the generated output from a single file in the following ways.
 
 ### Change the namespace of the generated types
 
@@ -97,6 +123,43 @@ using MyCoolApp.Resources;
 ```
 
 Multiple namespaces can be included by adding multiple comments.
+
+## Configuration (with the NuGet package)
+
+Project level configuration (when the NuGet package is used) is done by specifying additional MSBuild Properties.
+
+### Configure files to include
+
+By default, it will look for ResourceDictionaries in `.xaml` files in the `Resources` directory (and any subdirectories) of your project.
+
+You can change this by specifying **XamlStyleInputFiles**
+
+You can specify an **exact directory**, a **directory and all sub-directories**, or a **specific file**.
+
+You can also specify multiple values by spearating them with a semicolon '`;`'.
+
+```xml
+<PropertyGroup>
+	<!-- A specific directory -->
+	<XamlStyleInputFiles>Resources\Styles\*.xaml</XamlStyleInputFiles>
+	<!-- A directory and any sub-directories -->
+	<XamlStyleInputFiles>Resources\**\*.xaml</XamlStyleInputFiles>
+	<!-- Two specific files -->
+	<XamlStyleInputFiles>Resources\Styles\Colors.xaml;Resources\Styles\Styles.xaml</XamlStyleInputFiles>
+</PropertyGroup>
+```
+
+### Configure a different default namespace
+
+Do this by specifying **XamlStyleGenerationNamespace**
+
+```xml
+<PropertyGroup>
+	<XamlStyleGenerationNamespace>MyCoolApp.Resources.Generated</XamlStyleGenerationNamespace>
+</PropertyGroup>
+```
+
+Any per file configuration will override this value. If not specified, the default will be the `RootNamespace` of the project.
 
 ## Feedback wanted
 
