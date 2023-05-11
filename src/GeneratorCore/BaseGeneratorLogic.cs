@@ -237,7 +237,10 @@ namespace GeneratorCore
                     }
                 }
 
-                // TODO: add something to output file if there is nothing to include.
+                if (!colors.Any() && !brushes.Any() && !styles.Any())
+                {
+                    output.AppendLine("    // No suitable content was found to generate classes for.");
+                }
 
                 output.AppendLine("}");
                 output.AppendLine();

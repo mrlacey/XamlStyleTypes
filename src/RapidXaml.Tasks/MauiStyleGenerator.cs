@@ -5,7 +5,7 @@ using GeneratorCore;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace RapidXaml.Tasks
+namespace RapidXaml.CodeGen
 {
     public class MauiStyleGenerator : Task
     {
@@ -41,14 +41,18 @@ namespace RapidXaml.Tasks
 
                         if (Directory.Exists(sourceDirectory))
                         {
+                            if (string.IsNullOrEmpty(fileNamePattern))
+                            {
+                                fileNamePattern = "*.xaml";
+                            }
+
                             var foundFiles = Directory.EnumerateFiles(sourceDirectory, fileNamePattern, searchOptions);
 
                             inputFilePaths.AddRange(foundFiles);
                         }
                         else
                         {
-                            // TODO: add better error message
-                            Log.LogError($"Could not find dir: '{sourceDirectory}' ");
+                            Log.LogError($"{nameof(MauiStyleGenerator)}: Could not find directory: '{sourceDirectory}' ");
                         }
                     }
                     else
@@ -56,31 +60,35 @@ namespace RapidXaml.Tasks
                         inputFilePaths.Add(inputFileItem.ItemSpec);
                     }
 
-                    // TODO: warn if specified directory doesn't contain any suitable xaml files
-
-                    foreach (var inputPath in inputFilePaths)
+                    if (inputFilePaths.Count > 0)
                     {
-                        var inputFile = new FileInfo(inputPath);
-
-                        if (inputFile.FullName.EndsWith(".xaml", StringComparison.InvariantCultureIgnoreCase))
+                        foreach (var inputPath in inputFilePaths)
                         {
-                            Log.LogMessage(MessageImportance.Normal, $"Generating types for {inputFile.FullName}");
+                            var inputFile = new FileInfo(inputPath);
 
-                            var outputFileName = inputFile.FullName.Substring(0, inputFile.FullName.Length - 5) + ".cs";
+                            if (inputFile.FullName.EndsWith(".xaml", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                Log.LogMessage(MessageImportance.Normal, $"Generating types for {inputFile.FullName}");
 
-                            var inputFileContents = File.ReadAllText(inputFile.FullName);
+                                var outputFileName = inputFile.FullName.Substring(0, inputFile.FullName.Length - 5) + ".cs";
 
-                            // TODO: review adding "Task" to the name here
-                            var generator = new MauiGeneratorLogic(nameof(MauiStyleGenerator));
+                                var inputFileContents = File.ReadAllText(inputFile.FullName);
 
-                            var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace);
+                                var generator = new MauiGeneratorLogic($"{nameof(MauiStyleGenerator)} from RapidXaml.CodeGen.Maui");
 
-                            File.WriteAllBytes(outputFileName, generated);
+                                var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace);
+
+                                File.WriteAllBytes(outputFileName, generated);
+                            }
+                            else
+                            {
+                                Log.LogWarning($"{nameof(MauiStyleGenerator)}: Skipping generation of {inputFile.FullName}");
+                            }
                         }
-                        else
-                        {
-                            Log.LogWarning($"Skipping generation of {inputFile.FullName}");
-                        }
+                    }
+                    else
+                    {
+                        Log.LogError($"{nameof(MauiStyleGenerator)}: No files found in '{inputFileItem.ItemSpec}' ");
                     }
                 }
 
@@ -89,8 +97,6 @@ namespace RapidXaml.Tasks
             }
             catch (Exception ex)
             {
-                // This logging helper method is designed to capture and display information
-                // from arbitrary exceptions in a standard way.
                 Log.LogErrorFromException(ex, showStackTrace: true);
                 return false;
             }

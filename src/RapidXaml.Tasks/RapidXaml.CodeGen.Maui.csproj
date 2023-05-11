@@ -7,10 +7,10 @@
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		
-		<Version>0.0.7-prerelease</Version>
-		<PackageReleaseNotes>Updated readme</PackageReleaseNotes>
+		<Version>0.0.8-prerelease</Version>
+		<PackageReleaseNotes>Changed package name</PackageReleaseNotes>
 		
-		<Title>RapidXaml.Tasks</Title>
+		<Title>RapidXaml.CodeGen.Maui</Title>
 		<Authors>Matt Lacey</Authors>
 		<owners>MRLacey</owners>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -18,7 +18,7 @@
 		<PackageIcon>Resources\Icon.png</PackageIcon>
 		<PackageReadmeFile>docs\readme.md</PackageReadmeFile>
 		
-		<Description>MSBuild tasks from the Rapid XAML Toolkit.</Description>
+		<Description>MSBuild tasks for .NET MAUI projects, from the Rapid XAML Toolkit.</Description>
 		<PackageTags>XAML MAUI DotNetMaui</PackageTags>
 		<Copyright>Copyright © Matt Lacey 2023</Copyright>
 		
@@ -57,8 +57,8 @@
 		<!-- these lines pack the build props/targets files to the `build` folder in the generated package.
  		by convention, the .NET SDK will look for build\<Package Id>.props and build\<Package Id>.targets
  		for automatic inclusion in the build. -->
-		<Content Include="build\RapidXaml.Tasks.props" PackagePath="build\" />
-		<Content Include="build\RapidXaml.Tasks.targets" PackagePath="build\" />
+		<Content Include="build\RapidXaml.CodeGen.Maui.props" PackagePath="build\" />
+		<Content Include="build\RapidXaml.CodeGen.Maui.targets" PackagePath="build\" />
 		<None Update="Resources\Icon.png" Pack="true" PackagePath="\">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
