@@ -47,11 +47,11 @@ You can also specify multiple values by spearating with a semicolon '`;`'.
 
 ```xml
 <PropertyGroup>
-	<!-- A specific directory -->
+	&lt;!-- A specific directory --&gt;
 	<XamlStyleInputFiles>Resources\Styles\*.xaml</XamlStyleInputFiles>
-	<!-- A directory and any intermediary sub-directories -->
+	&lt;!-- A directory and any intermediary sub-directories --&gt;
 	<XamlStyleInputFiles>Resources\**\*.xaml</XamlStyleInputFiles>
-	<!-- Two specific files -->
+	&lt;!-- Two specific files --&gt;
 	<XamlStyleInputFiles>Resources\Styles\Colors.xaml;Resources\Styles\Styles.xaml</XamlStyleInputFiles>
 </PropertyGroup>
 ```
@@ -63,7 +63,7 @@ Do this by specifying **XamlStyleGenerationNamespace**
 ```xml
 <PropertyGroup>
 	<XamlStyleGenerationNamespace>MyCoolApp.Resources.Generated</XamlStyleGenerationNamespace>
-</PropertyGroup
+</PropertyGroup>
 ```
 
 Any per file configuration will override this value. If not specified, the default will be the `RootNamespace` of the project.
