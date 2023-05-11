@@ -15,18 +15,12 @@ namespace RapidXaml.Tasks
         [Required]
         public string GenerationNamespace { get; set; }
 
-        // TODO: Support overriding namespace
-        // TODO: support specifying types to ignore
-        // TODO: support specifying additional namespaces to include
-
         public override bool Execute()
         {
             try
             {
                 foreach (var inputFileItem in InputFiles)
                 {
-                    //Log.LogError(inputFileItem.ToString());
-                    //Log.LogError(inputFileItem.ItemSpec);
                     //Log.LogMessage(MessageImportance.High, $"InputFile: {inputFileItem}::{inputFileItem.ItemSpec} ");
 
                     List<string> inputFilePaths = new();
@@ -37,14 +31,32 @@ namespace RapidXaml.Tasks
                         string fileNamePattern = Path.GetFileName(fullFilePath);
                         string sourceDirectory = fullFilePath.Replace(fileNamePattern, string.Empty);
 
-                        var foundFiles = Directory.EnumerateFiles(sourceDirectory, fileNamePattern);
+                        var searchOptions = SearchOption.TopDirectoryOnly;
 
-                        inputFilePaths.AddRange(foundFiles);
+                        if (sourceDirectory.EndsWith("**\\"))
+                        {
+                            sourceDirectory = sourceDirectory.Substring(0, sourceDirectory.Length - 3);
+                            searchOptions = SearchOption.AllDirectories;
+                        }
+
+                        if (Directory.Exists(sourceDirectory))
+                        {
+                            var foundFiles = Directory.EnumerateFiles(sourceDirectory, fileNamePattern, searchOptions);
+
+                            inputFilePaths.AddRange(foundFiles);
+                        }
+                        else
+                        {
+                            // TODO: add better error message
+                            Log.LogError($"Could not find dir: '{sourceDirectory}' ");
+                        }
                     }
                     else
                     {
                         inputFilePaths.Add(inputFileItem.ItemSpec);
                     }
+
+                    // TODO: warn if specified directory doesn't contain any suitable xaml files
 
                     foreach (var inputPath in inputFilePaths)
                     {

@@ -7,7 +7,9 @@
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		
-		<Version>0.0.2-prerelease</Version>
+		<Version>0.0.6-prerelease</Version>
+		<PackageReleaseNotes>Address CS1587 in generated code</PackageReleaseNotes>
+		
 		<Title>RapidXaml.Tasks</Title>
 		<Authors>Matt Lacey</Authors>
 		<owners>MRLacey</owners>

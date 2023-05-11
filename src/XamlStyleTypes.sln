@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33417.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlStyleTypes", "XamlStyleTypes.csproj", "{CBA07E81-E5A1-40D9-A455-EF6DD522058E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlStyleTypes", "XamlStyleTypes\XamlStyleTypes.csproj", "{CBA07E81-E5A1-40D9-A455-EF6DD522058E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.Tasks", "..\RapidXaml.Tasks\RapidXaml.Tasks.csproj", "{6FEF5F2A-0277-487E-9B10-A5835084ABF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.Tasks", "RapidXaml.Tasks\RapidXaml.Tasks.csproj", "{6FEF5F2A-0277-487E-9B10-A5835084ABF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.GeneratorCore", "..\GeneratorCore\RapidXaml.GeneratorCore.csproj", "{E26EDBBF-2E16-4B74-B854-63DE5C6BCDA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.GeneratorCore", "GeneratorCore\RapidXaml.GeneratorCore.csproj", "{E26EDBBF-2E16-4B74-B854-63DE5C6BCDA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
