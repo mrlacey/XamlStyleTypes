@@ -236,6 +236,9 @@ namespace GeneratorCore
                         AddIndividualStyleClass(output, xKey, targetType, fileIdentifier);
                     }
                 }
+
+                // TODO: add somethign to output file if there is nothing to include.
+
                 output.AppendLine("}");
                 output.AppendLine();
             }
