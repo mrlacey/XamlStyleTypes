@@ -74,8 +74,7 @@ namespace RapidXaml.CodeGen
 
                                 var inputFileContents = File.ReadAllText(inputFile.FullName);
 
-                                // TODO: review adding "Task" to the name here
-                                var generator = new MauiGeneratorLogic(nameof(MauiStyleGenerator));
+                                var generator = new MauiGeneratorLogic($"{nameof(MauiStyleGenerator)} from RapidXaml.CodeGen.Maui");
 
                                 var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace);
 
