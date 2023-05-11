@@ -8,6 +8,6 @@
 		<!--The folder where the custom task will be present. It points to inside the NuGet package. -->
 		<CustomTasksFolder>$(MSBuildThisFileDirectory)..\$(taskFoldername)\$(taskFramework)</CustomTasksFolder>
 		<!--Reference to the assembly which contains the MSBuild Task-->
-		<CustomTasksAssembly>$(CustomTasksFolder)\RapidXaml.Tasks.dll</CustomTasksAssembly>
+		<CustomTasksAssembly>$(CustomTasksFolder)\RapidXaml.CodeGen.Maui.dll</CustomTasksAssembly>
 	</PropertyGroup>
 </Project>

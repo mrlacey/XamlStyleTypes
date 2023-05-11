@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!--Register the custom task-->
-	<UsingTask TaskName="RapidXaml.Tasks.MauiStyleGenerator" AssemblyFile="$(CustomTasksAssembly)"/>
+	<UsingTask TaskName="RapidXaml.CodeGen.MauiStyleGenerator" AssemblyFile="$(CustomTasksAssembly)"/>
 
 	<!--Task parameters default values, these can be overridden-->
 	<PropertyGroup>

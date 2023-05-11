@@ -1,4 +1,4 @@
-# RapidXaml.Tasks
+# RapidXaml.CodeGen.Maui
 
 MSBuild tasks from the Rapid XAML Toolkit.
 
@@ -10,12 +10,12 @@ This task is used to generate classes from a `ResourceDictionary` of styles in a
 
 To use:
 
-1. Add a reference to the NuGet package `RapidXaml.Tasks`.
+1. Add a reference to the NuGet package `RapidXaml.CodeGen.Maui`.
 
 e.g. (in your .csproj file)
 ```xml
 <ItemGroup>
-	<PackageReference Include="RapidXaml.Tasks" Version="0.0.6-prerelease" />
+	<PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.1.0" />
 </ItemGroup>
 ```
 

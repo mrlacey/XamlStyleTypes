@@ -5,7 +5,7 @@ using GeneratorCore;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace RapidXaml.Tasks
+namespace RapidXaml.CodeGen
 {
     public class MauiStyleGenerator : Task
     {
@@ -48,7 +48,7 @@ namespace RapidXaml.Tasks
                         else
                         {
                             // TODO: add better error message
-                            Log.LogError($"Could not find dir: '{sourceDirectory}' ");
+                            Log.LogError($"{nameof(MauiStyleGenerator)}: Could not find directory: '{sourceDirectory}' ");
                         }
                     }
                     else
@@ -79,7 +79,7 @@ namespace RapidXaml.Tasks
                         }
                         else
                         {
-                            Log.LogWarning($"Skipping generation of {inputFile.FullName}");
+                            Log.LogWarning($"{nameof(MauiStyleGenerator)}: Skipping generation of {inputFile.FullName}");
                         }
                     }
                 }
