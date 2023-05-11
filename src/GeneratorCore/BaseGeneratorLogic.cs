@@ -237,7 +237,7 @@ namespace GeneratorCore
                     }
                 }
 
-                // TODO: add somethign to output file if there is nothing to include.
+                // TODO: add something to output file if there is nothing to include.
 
                 output.AppendLine("}");
                 output.AppendLine();
