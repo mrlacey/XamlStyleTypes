@@ -8,7 +8,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		
 		<Version>0.1.0</Version>
-		<PackageReleaseNotes>Changed package name</PackageReleaseNotes>
+		<PackageReleaseNotes>First "proper" public release</PackageReleaseNotes>
 		
 		<Title>RapidXaml.CodeGen.Maui</Title>
 		<Authors>Matt Lacey</Authors>
