@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace XamlStyleTypes
+namespace GeneratorCore
 {
-    public class MauiStyleGenerator : XamlStyleGenerator
+    public class MauiGeneratorLogic : BaseGeneratorLogic
     {
-        public const string Name = nameof(MauiStyleGenerator);
+        private readonly string _name;
 
-        public const string Description = "Create local types for XAML Styles in a .NET MAUI ResourceDictionary.";
+        public MauiGeneratorLogic(string name)
+        {
+            _name = name;
+        }
 
-        internal override string GetName() => Name;
+        internal override string GetName() => _name;
 
         // Rely on implicit namespaces for MAUI
         internal override List<string> GetDefaultNamespaces() => new() { };
