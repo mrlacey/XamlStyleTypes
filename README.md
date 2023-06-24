@@ -136,7 +136,7 @@ You can change this by specifying **XamlStyleInputFiles**
 
 You can specify an **exact directory**, a **directory and all sub-directories**, or a **specific file**.
 
-You can also specify multiple values by spearating them with a semicolon '`;`'.
+You can also specify multiple values by separating them with a semicolon '`;`'.
 
 ```xml
 <PropertyGroup>
@@ -159,7 +159,7 @@ Do this by specifying **XamlStyleGenerationNamespace**
 </PropertyGroup>
 ```
 
-Any per file configuration will override this value. If not specified, the default will be the `RootNamespace` of the project.
+Any per-file configuration will override this value. If not specified, the default will be the `RootNamespace` of the project.
 
 ## Feedback wanted
 
