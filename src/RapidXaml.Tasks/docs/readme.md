@@ -2,10 +2,6 @@
 
 MSBuild tasks from the Rapid XAML Toolkit.
 
-Included in this version:
-
-## MauiStyleGenerator
-
 This task is used to generate classes from a `ResourceDictionary` of styles in a .NET MAUI app.
 
 To use:
@@ -13,9 +9,10 @@ To use:
 1. Add a reference to the NuGet package `RapidXaml.CodeGen.Maui`.
 
 e.g. (in your .csproj file)
+
 ```xml
 <ItemGroup>
-	<PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.1.0" />
+    <PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.1.0" />
 </ItemGroup>
 ```
 
@@ -43,16 +40,16 @@ Do this by specifying **XamlStyleInputFiles**
 
 You can specify an **exact directory**, a **directory and all sub-directories**, or a **specific file**.
 
-You can also specify multiple values by spearating them with a semicolon '`;`'.
+You can also specify multiple values by separating them with a semicolon '`;`'.
 
 ```xml
 <PropertyGroup>
-	&lt;!-- A specific directory --&gt;
-	<XamlStyleInputFiles>Resources\Styles\*.xaml</XamlStyleInputFiles>
-	&lt;!-- A directory and any intermediary sub-directories --&gt;
-	<XamlStyleInputFiles>Resources\**\*.xaml</XamlStyleInputFiles>
-	&lt;!-- Two specific files --&gt;
-	<XamlStyleInputFiles>Resources\Styles\Colors.xaml;Resources\Styles\Styles.xaml</XamlStyleInputFiles>
+    /<!-- A specific directory --/>
+    <XamlStyleInputFiles>Resources\Styles\*.xaml</XamlStyleInputFiles>
+    /<!-- A directory and any intermediary sub-directories --/>
+    <XamlStyleInputFiles>Resources\**\*.xaml</XamlStyleInputFiles>
+    /<!-- Two specific files --/>
+    <XamlStyleInputFiles>Resources\Styles\Colors.xaml;Resources\Styles\Styles.xaml</XamlStyleInputFiles>
 </PropertyGroup>
 ```
 
@@ -62,7 +59,7 @@ Do this by specifying **XamlStyleGenerationNamespace**
 
 ```xml
 <PropertyGroup>
-	<XamlStyleGenerationNamespace>MyCoolApp.Resources.Generated</XamlStyleGenerationNamespace>
+    <XamlStyleGenerationNamespace>MyCoolApp.Resources.Generated</XamlStyleGenerationNamespace>
 </PropertyGroup>
 ```
 
