@@ -8,7 +8,7 @@ This screenshot shows part of the XAML file (above) and the automatically genera
 
 Currently supporting .NET MAUI. _WPF, UWP, & WinUI support coming soon._
 
-A [Rapid XAML Toolkit](https://github.com/mrlacey/rapid-xaml-toolkit) experiment.
+A [Rapid XAML Toolkit](https://github.com/mrlacey/rapid-xaml-toolkit) experiment. If/when this ships beyond an experiment/preview, it will be moved to that project and repository.
 
 ---
 
