@@ -15,7 +15,7 @@ To use:
 e.g. (in your .csproj file)
 ```xml
 <ItemGroup>
-	<PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.1.0" />
+	<PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.1.2" PrivateAssets="all" />
 </ItemGroup>
 ```
 
