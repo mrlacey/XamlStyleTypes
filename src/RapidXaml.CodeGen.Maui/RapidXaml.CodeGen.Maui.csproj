@@ -20,7 +20,7 @@
 		
 		<Description>MSBuild tasks for .NET MAUI projects, from the Rapid XAML Toolkit.</Description>
 		<PackageTags>XAML MAUI DotNetMaui</PackageTags>
-		<Copyright>Copyright © Matt Lacey 2023</Copyright>
+		<Copyright>Copyright © Matt Lacey 2024</Copyright>
 		
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -32,6 +32,7 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<DevelopmentDependency>true</DevelopmentDependency>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -44,7 +45,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="NuGet.CommandLine" Version="6.5.0">
+		<PackageReference Include="NuGet.CommandLine" Version="6.8.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
