@@ -17,6 +17,7 @@ namespace GeneratorCore
 
         internal abstract void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier);
 
+        // TODO: add tests
         public byte[] GenerateCode(string inputFileName, string inputFileContent, string defaultNamespace)
         {
             var output = new StringBuilder();
@@ -30,6 +31,10 @@ namespace GeneratorCore
                 var styles = new List<(string, string)>();
                 var colors = new List<string>();
                 var brushes = new List<string>();
+                var integers = new Dictionary<string, int>();
+                var doubles = new Dictionary<string, double>();
+                var decimals = new Dictionary<string, decimal>();
+                var thicknesses = new Dictionary<string, string>();
 
                 var overrideNamespace = string.Empty;
                 var ignoreTypes = new List<string>();
@@ -120,6 +125,70 @@ namespace GeneratorCore
                             if (xKey != null && !string.IsNullOrWhiteSpace(xKey.Value))
                             {
                                 brushes.Add(xKey.Value);
+                            }
+                        }
+                        else if (element.Name == "Double" || element.Name == "x:Double")
+                        {
+                            var attributes = element.Attributes;
+
+                            var xKey = attributes["x:Key"];
+
+                            if (xKey != null && !string.IsNullOrWhiteSpace(xKey.Value) && double.TryParse(element.InnerText, out var doubleValue))
+                            {
+                                doubles.Add(xKey.Value, doubleValue);
+                            }
+                        }
+                        else if (element.Name == "Decimal")
+                        {
+                            var attributes = element.Attributes;
+
+                            var xKey = attributes["x:Key"];
+
+                            if (xKey != null && !string.IsNullOrWhiteSpace(xKey.Value) && decimal.TryParse(element.InnerText, out var decimalValue))
+                            {
+                                decimals.Add(xKey.Value, decimalValue);
+                            }
+                        }
+                        else if (element.Name == "Integer" || element.Name == "x:Int16" || element.Name == "x:Int32" || element.Name == "x:Int64")
+                        {
+                            var attributes = element.Attributes;
+
+                            var xKey = attributes["x:Key"];
+
+                            if (xKey != null && !string.IsNullOrWhiteSpace(xKey.Value) && int.TryParse(element.InnerText, out int intValue))
+                            {
+                                integers.Add(xKey.Value, intValue);
+                            }
+                        }
+                        else if (element.Name == "Thickness")
+                        {
+                            // TODO: support this
+                            var attributes = element.Attributes;
+
+                            var xKey = attributes["x:Key"];
+
+                            if (xKey != null && !string.IsNullOrWhiteSpace(xKey.Value))
+                            {
+                                var parts = element.InnerText.Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+
+                                if (parts.Length == 1 || parts.Length == 2 || parts.Length == 4)
+                                {
+                                    var allGood = true;
+                                    foreach (var part in parts)
+                                    {
+                                        if (!double.TryParse(part, out double doubleValue))
+                                        {
+                                            allGood = false;
+                                            break;
+                                        }
+                                    }
+
+                                    if (allGood)
+                                    {
+                                        // Join the parts back together with commas so C# works even if XAML used spaces
+                                        thicknesses.Add(xKey.Value, string.Join(",", parts));
+                                    }
+                                }
                             }
                         }
                         else if (element.Name == "Style")
@@ -225,6 +294,55 @@ namespace GeneratorCore
 
                 AddAnyBrushes();
 
+                void AddAnySizes()
+                {
+                    if (doubles.Any() || decimals.Any() || integers.Any() || thicknesses.Any())
+                    {
+                        output.AppendLine($"    public static partial class AppSizes ");
+                        output.AppendLine($"    {{ ");
+
+                        foreach (var item in doubles)
+                        {
+                            output.AppendLine($"        public const double {item.Key} = {item.Value};");
+                        }
+
+                        if (doubles.Any())
+                        {
+                            output.AppendLine();
+                        }
+
+                        foreach (var item in decimals)
+                        {
+                            output.AppendLine($"        public const decimal {item.Key} = {item.Value};");
+                        }
+
+                        if (decimals.Any())
+                        {
+                            output.AppendLine();
+                        }
+
+                        foreach (var item in integers)
+                        {
+                            output.AppendLine($"        public const int {item.Key} = {item.Value};");
+                        }
+
+                        if (integers.Any())
+                        {
+                            output.AppendLine();
+                        }
+
+                        foreach (var item in thicknesses)
+                        {
+                            output.AppendLine($"        public static Thickness {item.Key} = new Thickness({item.Value});");
+                        }
+
+                        output.AppendLine("    }");
+                        output.AppendLine();
+                    }
+                }
+
+                AddAnySizes();
+
                 var fileIdentifier = inputFileName.GetHashCode().ToString().TrimStart('-');
 
                 if (styles.Any())
@@ -237,7 +355,7 @@ namespace GeneratorCore
                     }
                 }
 
-                if (!colors.Any() && !brushes.Any() && !styles.Any())
+                if (!colors.Any() && !brushes.Any() && !styles.Any() && !doubles.Any() && !decimals.Any() && !integers.Any() && !thicknesses.Any())
                 {
                     output.AppendLine("    // No suitable content was found to generate classes for.");
                 }
