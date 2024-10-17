@@ -6,12 +6,12 @@ namespace RapidXaml.GeneratorCore.Tests;
 [TestClass]
 public class BasicManualVerificationChecks
 {
-    [TestMethod]
-    public void SimpleSizesAreAllInOutput()
-    {
-        var mauiGenerator = new MauiGeneratorLogic(nameof(SimpleSizesAreAllInOutput));
+	[TestMethod]
+	public void SimpleSizesAreAllInOutput()
+	{
+		var mauiGenerator = new MauiGeneratorLogic(nameof(SimpleSizesAreAllInOutput));
 
-        var testXaml = """
+		var testXaml = """
             <?xml version="1.0" encoding="utf-8" ?>
             <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -34,19 +34,19 @@ public class BasicManualVerificationChecks
             </ResourceDictionary>
             """;
 
-        var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing");
+		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing");
 
-        var stringResult = Encoding.UTF8.GetString(bytes);
+		var stringResult = Encoding.UTF8.GetString(bytes);
 
-        Assert.IsFalse(stringResult.StartsWith("#error"));
-        Assert.IsTrue(stringResult.Contains("InternalSpacing"));
-        Assert.IsTrue(stringResult.Contains("anint16"));
-        Assert.IsTrue(stringResult.Contains("anint32"));
-        Assert.IsTrue(stringResult.Contains("anint64"));
-        Assert.IsTrue(stringResult.Contains("StandardItemPadding1"));
-        Assert.IsTrue(stringResult.Contains("StandardItemPadding2"));
-        Assert.IsTrue(stringResult.Contains("StandardItemPadding4"));
-    }
+		Assert.IsFalse(stringResult.StartsWith("#error"));
+		Assert.IsTrue(stringResult.Contains("InternalSpacing"));
+		Assert.IsTrue(stringResult.Contains("anint16"));
+		Assert.IsTrue(stringResult.Contains("anint32"));
+		Assert.IsTrue(stringResult.Contains("anint64"));
+		Assert.IsTrue(stringResult.Contains("StandardItemPadding1"));
+		Assert.IsTrue(stringResult.Contains("StandardItemPadding2"));
+		Assert.IsTrue(stringResult.Contains("StandardItemPadding4"));
+	}
 }
 
 
