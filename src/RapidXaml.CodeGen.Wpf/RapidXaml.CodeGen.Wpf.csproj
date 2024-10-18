@@ -45,11 +45,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.0.0" PrivateAssets="all" ExcludeAssets="Runtime" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="NuGet.CommandLine" Version="6.8.0" GeneratePackagePath="true">
+		<PackageReference Include="NuGet.CommandLine" Version="6.9.1" GeneratePackagePath="true">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
