@@ -5,6 +5,7 @@
         <DisplayName>XAML Style Types</DisplayName>
         <Description xml:space="preserve">Create types (classes) from explicitly defined XAML Styles.</Description>
         <MoreInfo>https://github.com/mrlacey/XamlStyleTypes</MoreInfo>
+        <License>LICENSE.txt</License>
         <Icon>Resources\Icon.png</Icon>
         <Tags>MAUI; XAML</Tags>
         <Preview>true</Preview>
