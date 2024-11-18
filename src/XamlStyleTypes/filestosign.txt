@@ -1,0 +1,2 @@
+RapidXaml.GeneratorCore.dll
+XamlStyleTypes.dll
