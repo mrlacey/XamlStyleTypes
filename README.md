@@ -1,5 +1,7 @@
 # XamlStyleTypes
 
+[![Build](https://github.com/mrlacey/XamlStyleTypes/actions/workflows/build.yaml/badge.svg)](https://github.com/mrlacey/XamlStyleTypes/actions/workflows/build.yaml)
+
 Automatically generate types (classes) for explicitly defined styles in resource dictionaries.
 
 This screenshot shows part of the XAML file (above) and the automatically generated C# file (below).
