@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="XamlStyleTypes.2ba01d12-6fe6-4f3f-9b6e-7d3e79b071bd" Version="0.2.0" Language="en-US" Publisher="Matt Lacey" />
+        <Identity Id="XamlStyleTypes.2ba01d12-6fe6-4f3f-9b6e-7d3e79b071bd" Version="0.3.0" Language="en-US" Publisher="Matt Lacey" />
         <DisplayName>XAML Style Types</DisplayName>
         <Description xml:space="preserve">Create types (classes) from explicitly defined XAML Styles.</Description>
         <MoreInfo>https://github.com/mrlacey/XamlStyleTypes</MoreInfo>
