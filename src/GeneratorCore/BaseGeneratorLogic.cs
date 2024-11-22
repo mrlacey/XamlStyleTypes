@@ -6,6 +6,8 @@ using System.Xml;
 
 namespace GeneratorCore
 {
+    // TODO: Include this directly as a linked file in all the RX.CG projects
+    // TODO: Then remove the need for this project
     public abstract class BaseGeneratorLogic
     {
         internal abstract string GetName();

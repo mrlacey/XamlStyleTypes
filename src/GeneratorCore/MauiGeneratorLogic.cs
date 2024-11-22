@@ -3,7 +3,8 @@ using System.Text;
 
 namespace GeneratorCore
 {
-    public class MauiGeneratorLogic : BaseGeneratorLogic
+	// TODO: Move this in to the RX.CG.Maui project
+	public class MauiGeneratorLogic : BaseGeneratorLogic
     {
         private readonly string _name;
 

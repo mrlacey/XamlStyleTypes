@@ -3,7 +3,8 @@ using System.Text;
 
 namespace GeneratorCore
 {
-    public class WpfGeneratorLogic : BaseGeneratorLogic
+	// TODO: Move this in to the RX.CG.Wpf project
+	public class WpfGeneratorLogic : BaseGeneratorLogic
     {
         private readonly string _name;
 
@@ -14,7 +15,7 @@ namespace GeneratorCore
 
         internal override string GetName() => _name;
 
-        internal override List<string> GetDefaultNamespaces() => new() { };
+        internal override List<string> GetDefaultNamespaces() => [];
 
         internal override void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier)
         {

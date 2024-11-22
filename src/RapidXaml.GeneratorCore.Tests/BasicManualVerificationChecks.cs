@@ -1,6 +1,7 @@
-using System.Text;
+﻿using System.Text;
 using GeneratorCore;
 
+// TODO: Remove the central test project and replace with platform specific ones
 namespace RapidXaml.GeneratorCore.Tests;
 
 [TestClass]
