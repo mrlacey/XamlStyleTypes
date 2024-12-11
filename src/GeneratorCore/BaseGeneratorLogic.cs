@@ -238,17 +238,17 @@ namespace GeneratorCore
 
                 foreach (var item in GetDefaultNamespaces())
                 {
-                    output.AppendLine($"using {item}; ");
+                    output.AppendLine($"using {item};");
                 }
 
                 foreach (var ns in addUsing)
                 {
-                    output.AppendLine($"using {ns}; ");
+                    output.AppendLine($"using {ns};");
                 }
 
                 foreach (var ns in xmlnsToAdd)
                 {
-                    output.AppendLine($"using {ns.Value}; ");
+                    output.AppendLine($"using {ns.Value};");
                 }
 
                 var namespaceToUse = !string.IsNullOrWhiteSpace(overrideNamespace) ? overrideNamespace : defaultNamespace;
@@ -263,7 +263,7 @@ namespace GeneratorCore
                     if (colors.Any())
                     {
                         output.AppendLine($"    public static partial class AppColors");
-                        output.AppendLine($"    {{ ");
+                        output.AppendLine($"    {{");
 
                         foreach (var item in colors)
                         {
@@ -281,8 +281,8 @@ namespace GeneratorCore
                 {
                     if (brushes.Any())
                     {
-                        output.AppendLine($"    public static partial class AppBrushes ");
-                        output.AppendLine($"    {{ ");
+                        output.AppendLine($"    public static partial class AppBrushes");
+                        output.AppendLine($"    {{");
 
                         foreach (var item in brushes)
                         {
@@ -300,8 +300,8 @@ namespace GeneratorCore
                 {
                     if (doubles.Any() || decimals.Any() || integers.Any() || thicknesses.Any())
                     {
-                        output.AppendLine($"    public static partial class AppSizes ");
-                        output.AppendLine($"    {{ ");
+                        output.AppendLine($"    public static partial class AppSizes");
+                        output.AppendLine($"    {{");
 
                         foreach (var item in doubles)
                         {
