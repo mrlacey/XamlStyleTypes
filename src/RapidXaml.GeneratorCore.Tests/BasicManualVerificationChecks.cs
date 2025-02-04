@@ -35,7 +35,7 @@ public class BasicManualVerificationChecks
             </ResourceDictionary>
             """;
 
-		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing");
+		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing", includeResourceLoading: false);
 
 		var stringResult = Encoding.UTF8.GetString(bytes);
 

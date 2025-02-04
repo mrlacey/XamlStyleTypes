@@ -17,10 +17,10 @@ namespace GeneratorCore
         internal virtual void AddAnyAdditionalStyleRelatedCode(StringBuilder output, string fileIdentifier)
         { }
 
-        internal abstract void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier);
+        internal abstract void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier, bool includeResourceLoading = false);
 
         // TODO: add tests
-        public byte[] GenerateCode(string inputFileName, string inputFileContent, string defaultNamespace)
+        public byte[] GenerateCode(string inputFileName, string inputFileContent, string defaultNamespace, bool includeResourceLoading)
         {
             var output = new StringBuilder();
 
@@ -353,7 +353,7 @@ namespace GeneratorCore
 
                     foreach (var (xKey, targetType) in styles)
                     {
-                        AddIndividualStyleClass(output, xKey, targetType, fileIdentifier);
+                        AddIndividualStyleClass(output, xKey, targetType, fileIdentifier, includeResourceLoading);
                     }
                 }
 

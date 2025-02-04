@@ -17,7 +17,7 @@ namespace GeneratorCore
 
         internal override List<string> GetDefaultNamespaces() => [];
 
-        internal override void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier)
+        internal override void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier, bool includeResourceLoading = false)
         {
             output.AppendLine();
             output.AppendLine($"    public class {key} : {targetType}");
