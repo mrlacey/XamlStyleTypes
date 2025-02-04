@@ -22,9 +22,9 @@ public class BasicManualVerificationChecks
 
                 <x:Double x:Key="InternalSpacing">10</x:Double>
 
-                <x:Int16 x:Key="anint16">10</x:Int16>
-                <x:Int32 x:Key="anint32">10</x:Int32>
-                <x:Int64 x:Key="anint64">10</x:Int64>
+                <x:Int16 x:Key="anInt16">10</x:Int16>
+                <x:Int32 x:Key="anInt32">10</x:Int32>
+                <x:Int64 x:Key="anInt64">10</x:Int64>
                 <x:Decimal x:Key="someDecimal">10.2</x:Decimal>
 
                 <Thickness x:Key="StandardItemPadding1">10</Thickness>
@@ -41,9 +41,9 @@ public class BasicManualVerificationChecks
 
 		Assert.IsFalse(stringResult.StartsWith("#error"));
 		Assert.IsTrue(stringResult.Contains("InternalSpacing"));
-		Assert.IsTrue(stringResult.Contains("anint16"));
-		Assert.IsTrue(stringResult.Contains("anint32"));
-		Assert.IsTrue(stringResult.Contains("anint64"));
+		Assert.IsTrue(stringResult.Contains("anInt16"));
+		Assert.IsTrue(stringResult.Contains("anInt32"));
+		Assert.IsTrue(stringResult.Contains("anInt64"));
 		Assert.IsTrue(stringResult.Contains("StandardItemPadding1"));
 		Assert.IsTrue(stringResult.Contains("StandardItemPadding2"));
 		Assert.IsTrue(stringResult.Contains("StandardItemPadding4"));
