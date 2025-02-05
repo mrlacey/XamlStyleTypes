@@ -7,11 +7,13 @@ namespace GeneratorCore
 	public class MauiGeneratorLogic : BaseGeneratorLogic
     {
         private readonly string _name;
+		private readonly string _version;
 
-        public MauiGeneratorLogic(string name)
+		public MauiGeneratorLogic(string name, string version)
         {
             _name = name;
-        }
+			_version = version;
+		}
 
         internal override string GetName() => _name;
 
@@ -21,7 +23,11 @@ namespace GeneratorCore
         internal override void AddIndividualStyleClass(StringBuilder output, string key, string targetType, string fileIdentifier, bool includeResourceLoading = false)
         {
             output.AppendLine();
-            output.AppendLine($"    public class {key} : {targetType}");
+
+			// See: https://learn.microsoft.com/en-gb/archive/blogs/codeanalysis/correct-usage-of-the-compilergeneratedattribute-and-the-generatedcodeattribute
+			output.AppendLine($"    [global::System.CodeDom.Compiler.GeneratedCodeAttribute(\"{GetName()}\", \"{_version}\")]");
+			output.AppendLine($"    [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]");
+			output.AppendLine($"    public class {key} : {targetType}");
             output.AppendLine($"    {{");
             output.AppendLine($"        public {key}()");
             output.AppendLine($"        {{");

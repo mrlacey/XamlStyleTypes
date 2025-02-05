@@ -19,7 +19,7 @@
 		
 		<Description>MSBuild tasks for .NET MAUI projects, from the Rapid XAML Toolkit.</Description>
 		<PackageTags>XAML MAUI DotNetMaui</PackageTags>
-		<Copyright>Copyright © Matt Lacey 2024</Copyright>
+		<Copyright>Copyright © Matt Lacey 2025</Copyright>
 		
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryType>git</RepositoryType>

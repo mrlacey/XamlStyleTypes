@@ -10,7 +10,7 @@ public class BasicManualVerificationChecks
 	[TestMethod]
 	public void SimpleSizesAreAllInOutput()
 	{
-		var mauiGenerator = new MauiGeneratorLogic(nameof(SimpleSizesAreAllInOutput));
+		var mauiGenerator = new MauiGeneratorLogic(nameof(SimpleSizesAreAllInOutput), version: "1.0-TEST");
 
 		var testXaml = """
             <?xml version="1.0" encoding="utf-8" ?>

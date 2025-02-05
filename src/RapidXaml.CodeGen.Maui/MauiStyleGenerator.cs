@@ -90,7 +90,8 @@ namespace RapidXaml.CodeGen
 
 								var inputFileContents = File.ReadAllText(inputFile.FullName);
 
-								var generator = new MauiGeneratorLogic($"{nameof(MauiStyleGenerator)} from RapidXaml.CodeGen.Maui");
+								// TODO: get the version from the assembly
+								var generator = new MauiGeneratorLogic("RapidXaml.CodeGen.Maui.MauiStyleGenerator", version: "0.4.0.0");
 
 								var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace, SupportResxGeneration);
 
