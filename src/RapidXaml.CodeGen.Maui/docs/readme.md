@@ -1,4 +1,4 @@
-# RapidXaml.CodeGen.Maui
+﻿# RapidXaml.CodeGen.Maui
 
 MSBuild tasks for .NET MAUI apps, from the Rapid XAML Toolkit.
 
@@ -43,7 +43,7 @@ Do this by specifying **XamlStyleInputFiles**
 
 You can specify an **exact directory**, a **directory and all sub-directories**, or a **specific file**.
 
-You can also specify multiple values by spearating them with a semicolon '`;`'.
+You can also specify multiple values by separating them with a semicolon '`;`'.
 
 ```xml
 <PropertyGroup>

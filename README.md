@@ -1,4 +1,4 @@
-# XamlStyleTypes
+﻿# XamlStyleTypes
 
 ![Works with Visual Studio 2022](https://img.shields.io/static/v1.svg?label=VS&message=2022&color=A853C7)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -141,7 +141,7 @@ You can change this by specifying **XamlStyleInputFiles**
 
 You can specify an **exact directory**, a **directory and all sub-directories**, or a **specific file**.
 
-You can also specify multiple values by spearating them with a semicolon '`;`'.
+You can also specify multiple values by separating them with a semicolon '`;`'.
 
 ```xml
 <PropertyGroup>
