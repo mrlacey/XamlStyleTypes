@@ -69,7 +69,7 @@ namespace GeneratorCore
                             }
                             else if (xa.Name.EndsWith(":GenConfig.IgnoreTypes", StringComparison.InvariantCultureIgnoreCase))
                             {
-                                ignoreTypes = xa.Value.Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                                ignoreTypes = xa.Value.Split([",", " "], StringSplitOptions.RemoveEmptyEntries).ToList();
                             }
                         }
                     }
@@ -88,7 +88,7 @@ namespace GeneratorCore
 
                             if (val.StartsWith("GenConfig:", StringComparison.InvariantCultureIgnoreCase))
                             {
-                                var valParts = val.Split(new[] { ":", "=", "\"" }, StringSplitOptions.RemoveEmptyEntries);
+                                var valParts = val.Split([":", "=", "\""], StringSplitOptions.RemoveEmptyEntries);
 
                                 if (valParts.Length == 3)
                                 {
@@ -98,7 +98,7 @@ namespace GeneratorCore
                                     }
                                     else if (valParts[1].Equals("IgnoreTypes", StringComparison.InvariantCultureIgnoreCase))
                                     {
-                                        ignoreTypes = valParts[2].Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+										ignoreTypes = valParts[2].Split([",", " "], StringSplitOptions.RemoveEmptyEntries).ToList();
                                     }
                                     else if (valParts[1].Equals("AddUsing", StringComparison.InvariantCultureIgnoreCase))
                                     {
@@ -171,7 +171,7 @@ namespace GeneratorCore
 
                             if (xKey != null && !string.IsNullOrWhiteSpace(xKey.Value))
                             {
-                                var parts = element.InnerText.Split(new[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries);
+                                var parts = element.InnerText.Split([",", " "], StringSplitOptions.RemoveEmptyEntries);
 
                                 if (parts.Length == 1 || parts.Length == 2 || parts.Length == 4)
                                 {
