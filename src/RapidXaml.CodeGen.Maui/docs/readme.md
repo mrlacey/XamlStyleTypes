@@ -27,7 +27,7 @@ By default, it will look for ResourceDictionaries in `.xaml` files in the `Resou
 
 There are two ways to configure what is generated.
 
-You can use  one or both of these.
+You can use one or both of these.
 
 ### Per file Configuration
 
