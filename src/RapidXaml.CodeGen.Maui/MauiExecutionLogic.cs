@@ -257,6 +257,7 @@ public partial class MauiExecutionLogic
 		// TODO: Review how this handles multiple resx files containing duplicate resource names
 		foreach (var fileItem in allResourcesOfInterest)
 		{
+			// TODO: Need to also add a using directive for the namespace of the file (based on directory structure)
 			var fileName = _file.PathGetFileNameWithoutExtension(fileItem.Key);
 
 			foreach (var res in fileItem.Value)
