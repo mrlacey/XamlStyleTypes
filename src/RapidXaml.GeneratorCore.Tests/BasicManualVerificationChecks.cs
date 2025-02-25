@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using GeneratorCore;
+using RapidXaml.CodeGen;
 
 // TODO: Remove the central test project and replace with platform specific ones
 namespace RapidXaml.GeneratorCore.Tests;
@@ -10,7 +10,7 @@ public class BasicManualVerificationChecks
 	[TestMethod]
 	public void SimpleSizesAreAllInOutput()
 	{
-		var mauiGenerator = new MauiGeneratorLogic(nameof(SimpleSizesAreAllInOutput));
+		var mauiGenerator = new MauiGeneratorLogic(nameof(SimpleSizesAreAllInOutput), version: "1.0-TEST");
 
 		var testXaml = """
             <?xml version="1.0" encoding="utf-8" ?>
@@ -35,7 +35,7 @@ public class BasicManualVerificationChecks
             </ResourceDictionary>
             """;
 
-		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing");
+		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing", includeResourceLoading: false);
 
 		var stringResult = Encoding.UTF8.GetString(bytes);
 
@@ -47,6 +47,57 @@ public class BasicManualVerificationChecks
 		Assert.IsTrue(stringResult.Contains("StandardItemPadding1"));
 		Assert.IsTrue(stringResult.Contains("StandardItemPadding2"));
 		Assert.IsTrue(stringResult.Contains("StandardItemPadding4"));
+	}
+
+	[TestMethod]
+	public void CanGenerateType_WithoutResourceLoading()
+	{
+		var mauiGenerator = new MauiGeneratorLogic(nameof(CanGenerateType_WithoutResourceLoading), version: "1.0-TEST");
+
+		var testXaml = """
+            <?xml version="1.0" encoding="utf-8" ?>
+            <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+                <Style TargetType="Label" x:Key="PageTitle">
+                    <Setter Property="FontAttributes" Value="Bold" />
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+
+            </ResourceDictionary>
+            """;
+
+		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing", includeResourceLoading: false);
+
+		var stringResult = Encoding.UTF8.GetString(bytes);
+
+		Assert.IsFalse(stringResult.StartsWith("#error"));
+		Assert.IsTrue(stringResult.Contains("public class PageTitle : Label"));
+	}
+
+	[TestMethod]
+	public void CanGenerateType_WithResourceLoading()
+	{
+		var mauiGenerator = new MauiGeneratorLogic(nameof(CanGenerateType_WithResourceLoading), version: "1.0-TEST");
+
+		var testXaml = """
+            <?xml version="1.0" encoding="utf-8" ?>
+            <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+                <Style TargetType="Label" x:Key="PageTitle">
+                    <Setter Property="FontAttributes" Value="Bold" />
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+
+            </ResourceDictionary>
+            """;
+
+		var bytes = mauiGenerator.GenerateCode("ignore.xaml", testXaml, "RapidXaml.Testing", includeResourceLoading: true);
+
+		var stringResult = Encoding.UTF8.GetString(bytes);
+
+		Assert.IsFalse(stringResult.StartsWith("#error"));
+		Assert.IsTrue(stringResult.Contains("public class PageTitle : Label"));
+		Assert.IsTrue(stringResult.Contains("public PageTitle(ResourceId resourceId) : this()"));
 	}
 }
 

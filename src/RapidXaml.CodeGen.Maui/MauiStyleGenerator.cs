@@ -1,105 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using GeneratorCore;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace RapidXaml.CodeGen
+namespace RapidXaml.CodeGen;
+
+public class MauiStyleGenerator : Task, ITaskLogWrapper
 {
-    public class MauiStyleGenerator : Task
-    {
-        [Required]
-        public ITaskItem[] InputFiles { get; set; } = Array.Empty<ITaskItem>();
+	[Required]
+	public ITaskItem[] InputFiles { get; set; } = [];
 
-        [Required]
-        public string GenerationNamespace { get; set; }
+	[Required]
+	public string GenerationNamespace { get; set; }
 
-        public override bool Execute()
-        {
-            try
-            {
-                foreach (var inputFileItem in InputFiles)
-                {
-                    //Log.LogMessage(MessageImportance.High, $"InputFile: {inputFileItem}::{inputFileItem.ItemSpec} ");
+	[Required]
+	public bool SupportResxGeneration { get; set; } = false;
 
-                    List<string> inputFilePaths = new();
+	[Required]
+	public ITaskItem[] ResxInputFiles { get; set; } = [];
 
-                    if (inputFileItem.ItemSpec.Contains("*"))
-                    {
-                        string fullFilePath = inputFileItem.ItemSpec;
-                        string fileNamePattern = Path.GetFileName(fullFilePath);
-                        string sourceDirectory = fullFilePath.Replace(fileNamePattern, string.Empty);
+	internal IFileSystem _file = new DefaultFileSystem();
 
-                        var searchOptions = SearchOption.TopDirectoryOnly;
+	public static MauiStyleGenerator CreateForTesting(IFileSystem fileSystem)
+	{
+		var generator = new MauiStyleGenerator
+		{
+			_file = fileSystem,
+		};
 
-                        if (sourceDirectory.EndsWith("**\\"))
-                        {
-                            sourceDirectory = sourceDirectory.Substring(0, sourceDirectory.Length - 3);
-                            searchOptions = SearchOption.AllDirectories;
-                        }
+		return generator;
+	}
 
-                        if (Directory.Exists(sourceDirectory))
-                        {
-                            if (string.IsNullOrEmpty(fileNamePattern))
-                            {
-                                fileNamePattern = "*.xaml";
-                            }
+	public override bool Execute()
+	{
+		try
+		{
+			string[] TaskItemsToString(ITaskItem[] taskItems)
+			{
+				List<string> result = [];
+				foreach (var item in taskItems)
+				{
+					result.Add(item.ItemSpec);
+				}
+				return [.. result];
+			}
 
-                            var foundFiles = Directory.EnumerateFiles(sourceDirectory, fileNamePattern, searchOptions);
+			var executor = new MauiExecutionLogic(_file, this);
 
-                            inputFilePaths.AddRange(foundFiles);
-                        }
-                        else
-                        {
-                            Log.LogError($"{nameof(MauiStyleGenerator)}: Could not find directory: '{sourceDirectory}' ");
-                        }
-                    }
-                    else
-                    {
-                        inputFilePaths.Add(inputFileItem.ItemSpec);
-                    }
+			return executor.Execute(TaskItemsToString(InputFiles), GenerationNamespace, SupportResxGeneration, TaskItemsToString(ResxInputFiles));
+		}
+		catch (Exception ex)
+		{
+			Log.LogErrorFromException(ex, showStackTrace: true);
+			return false;
+		}
+	}
 
-                    if (inputFilePaths.Count > 0)
-                    {
-                        foreach (var inputPath in inputFilePaths)
-                        {
-                            var inputFile = new FileInfo(inputPath);
+	public void LogWarning(string message)
+		=> Log.LogWarning(message);
 
-                            if (inputFile.FullName.EndsWith(".xaml", StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                Log.LogMessage(MessageImportance.Normal, $"Generating types for {inputFile.FullName}");
+	public void LogError(string message)
+		=> Log.LogError(message);
 
-                                var outputFileName = inputFile.FullName.Substring(0, inputFile.FullName.Length - 5) + ".cs";
+	public void LogErrorFromException(Exception ex, bool showStackTrace)
+		=> Log.LogErrorFromException(ex, showStackTrace);
 
-                                var inputFileContents = File.ReadAllText(inputFile.FullName);
+	public void LogNormalMessage(string message)
+		=> Log.LogMessage(MessageImportance.Normal, message);
 
-                                var generator = new MauiGeneratorLogic($"{nameof(MauiStyleGenerator)} from RapidXaml.CodeGen.Maui");
-
-                                var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace);
-
-                                File.WriteAllBytes(outputFileName, generated);
-                            }
-                            else
-                            {
-                                Log.LogWarning($"{nameof(MauiStyleGenerator)}: Skipping generation of {inputFile.FullName}");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Log.LogError($"{nameof(MauiStyleGenerator)}: No files found in '{inputFileItem.ItemSpec}' ");
-                    }
-                }
-
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                Log.LogErrorFromException(ex, showStackTrace: true);
-                return false;
-            }
-        }
-    }
+	public void LogImportantMessage(string message)
+		=> Log.LogMessage(MessageImportance.High, message);
 }
+

@@ -76,7 +76,7 @@ namespace RapidXaml.CodeGen
 
                                 var generator = new WpfGeneratorLogic($"{nameof(WpfStyleGenerator)} from RapidXaml.CodeGen.Wpf");
 
-                                var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace);
+                                var generated = generator.GenerateCode(inputFile.Name, inputFileContents, GenerationNamespace, includeResourceLoading: false);
 
                                 File.WriteAllBytes(outputFileName, generated);
                             }

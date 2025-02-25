@@ -10,7 +10,7 @@ namespace XamlStyleTypes
 
         internal override BaseGeneratorLogic GetGeneratorLogic()
         {
-            return new MauiGeneratorLogic(Name);
+            return new MauiGeneratorLogic(Name, Vsix.Version);
         }
     }
 }

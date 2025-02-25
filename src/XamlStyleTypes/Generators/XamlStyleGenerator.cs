@@ -11,7 +11,7 @@ namespace XamlStyleTypes
 
         protected override byte[] GenerateCode(string inputFileName, string inputFileContent)
         {
-            return GetGeneratorLogic().GenerateCode(inputFileName, inputFileContent, FileNamespace);
+            return GetGeneratorLogic().GenerateCode(inputFileName, inputFileContent, FileNamespace, includeResourceLoading: false);
         }
     }
 }

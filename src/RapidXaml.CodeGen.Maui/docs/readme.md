@@ -15,7 +15,7 @@ To use:
 e.g. (in your .csproj file)
 ```xml
 <ItemGroup>
-	<PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.2.0" PrivateAssets="all" />
+	<PackageReference Include="RapidXaml.CodeGen.Maui" Version="0.3.0" PrivateAssets="all" />
 </ItemGroup>
 ```
 
@@ -27,7 +27,7 @@ By default, it will look for ResourceDictionaries in `.xaml` files in the `Resou
 
 There are two ways to configure what is generated.
 
-You can use  one or both of these.
+You can use one or both of these.
 
 ### Per file Configuration
 
