@@ -8,7 +8,7 @@
 	<PropertyGroup>
 		<XamlStyleGenerationNamespace Condition="'$(XamlStyleGenerationNamespace)' == ''">$(RootNamespace)</XamlStyleGenerationNamespace>
 		<XamlStyleInputFiles Condition="'$(XamlStyleInputFiles)' == ''">.\Resources\**\*.xaml</XamlStyleInputFiles>
-		<SupportResxGeneration Condition="'$(SupportResxGeneration)' == ''">true</SupportResxGeneration>
+		<SupportResxGeneration Condition="'$(SupportResxGeneration)' == ''">false</SupportResxGeneration>
 		<ResxInputFiles Condition="'$(ResxInputFiles)' == ''">.\Resources\**\*.resx</ResxInputFiles>
 	</PropertyGroup>
 
