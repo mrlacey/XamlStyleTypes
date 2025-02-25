@@ -330,6 +330,5 @@ namespace RapidXaml.CodeGen
 
 			return sb.ToString();
 		}
-
 	}
 }
