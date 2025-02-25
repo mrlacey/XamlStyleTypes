@@ -131,22 +131,27 @@ namespace RapidXaml.CodeGen
 
 					const string separator = "_._";
 
-					// TODO: ?? CHeck that there are some resxFilesOfInterest
+					var resxOutputFileName = string.Empty;
 
 					foreach (var resourceFile in resxFilesOfInterest)
 					{
+						// May not be where expected if multiple resx files are used - but fine for initial POC.
+						resxOutputFileName = Path.ChangeExtension(resourceFile, "resx.ResourceLoader.cs");
+
 						var doc = new XmlDocument();
 						doc.Load(resourceFile);
 
 						foreach (XmlElement element in doc.GetElementsByTagName("data"))
 						{
-							if (element.GetAttribute("name").Contains(separator))
+							var name = element.GetAttribute("name");
+
+							if (name.Contains(separator))
 							{
 								if (!resourcesOfInterest.ContainsKey(resourceFile))
 								{
 									resourcesOfInterest[resourceFile] = [];
 								}
-								var parts = element.GetAttribute("name").Split([separator], StringSplitOptions.RemoveEmptyEntries);
+								var parts = name.Split([separator], StringSplitOptions.RemoveEmptyEntries);
 
 								if (parts.Length == 2)
 								{
@@ -165,26 +170,27 @@ namespace RapidXaml.CodeGen
 									}
 									else
 									{
-										// TODO: Log unknown/unexpected value
+										Log.LogWarning($"{nameof(MauiStyleGenerator)}: Unsupported property type: '{parts[1]}'");
 									}
 								}
 								else
 								{
-									// TODO: Log unknown/unexpected format
+									Log.LogWarning($"{nameof(MauiStyleGenerator)}: Unexpected value for resource with name: '{name}'");
 								}
 							}
 						}
 					}
 
-					// TODO: Create ResourceId enum
-					var resIdEnum = GenerateResourceIdsEnum(resourcesOfInterest);
-					// TODO: work out where to save this
-					//File.WriteAllBytes(outputFileName, Encoding.UTF8.GetBytes(resIdEnum));
+					if (!string.IsNullOrEmpty(resxOutputFileName))
+					{
+						// TODO: Create ResourceId enum
+						var resIdEnum = GenerateResourceIdsEnum(resourcesOfInterest);
+						File.WriteAllBytes(resxOutputFileName, Encoding.UTF8.GetBytes(resIdEnum));
 
-					// TODO: Create GeneratedResourceLoader class
-					var resLoaderClass = GenerateResourceLoader(resourcesOfInterest);
-					// TODO: work out where to save this
-					//File.WriteAllBytes(outputFileName, Encoding.UTF8.GetBytes(resLoaderClass));
+						// TODO: Create GeneratedResourceLoader class
+						var resLoaderClass = GenerateResourceLoader(resourcesOfInterest);
+						File.WriteAllBytes(resxOutputFileName, Encoding.UTF8.GetBytes(resLoaderClass));
+					}
 				}
 
 				return true;
