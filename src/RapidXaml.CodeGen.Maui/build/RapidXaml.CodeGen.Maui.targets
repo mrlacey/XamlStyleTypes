@@ -8,8 +8,8 @@
 	<PropertyGroup>
 		<XamlStyleGenerationNamespace Condition="'$(XamlStyleGenerationNamespace)' == ''">$(RootNamespace)</XamlStyleGenerationNamespace>
 		<XamlStyleInputFiles Condition="'$(XamlStyleInputFiles)' == ''">.\Resources\**\*.xaml</XamlStyleInputFiles>
-		<SupportResxGeneration Condition="'$(SupportResxGeneration)' == ''">false</SupportResxGeneration>
-		<ResxInputFiles Condition="'$(ResxInputFiles)' == ''">.\Resources\**\*.resx</ResxInputFiles>
+		<IncludeResourceSupport Condition="'$(IncludeResourceSupport)' == ''">true</IncludeResourceSupport>
+		<XamlStyleResxFiles Condition="'$(XamlStyleResxFiles)' == ''">.\Resources\**\*.resx</XamlStyleResxFiles>
 	</PropertyGroup>
 
 	<!-- The actual build task -->
