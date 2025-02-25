@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using GeneratorCore;
 
 namespace RapidXaml.CodeGen;
 
@@ -106,7 +105,7 @@ public partial class MauiExecutionLogic
 							var inputFileContents = _file.FileReadAllText(inputFileFullName);
 
 							// TODO: get the version from the assembly
-							var generator = new MauiGeneratorLogic("RapidXaml.CodeGen.Maui.MauiStyleGenerator", version: "0.4.0.0");
+							var generator = new MauiGeneratorLogic("RapidXaml.CodeGen.Maui.MauiStyleGenerator", version: "0.3.0");
 
 							var generated = generator.GenerateCode(inputFileName, inputFileContents, generationNamespace, includeResourceLoading: (supportResxGeneration && resxFilesOfInterest.Any()));
 

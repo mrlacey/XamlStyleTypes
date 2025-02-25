@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using GeneratorCore;
+using RapidXaml.CodeGen;
 
 // TODO: Remove the central test project and replace with platform specific ones
 namespace RapidXaml.GeneratorCore.Tests;

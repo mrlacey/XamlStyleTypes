@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeneratorCore\RapidXaml.GeneratorCore.csproj" />
     <ProjectReference Include="..\RapidXaml.CodeGen.Maui\RapidXaml.CodeGen.Maui.csproj" />
   </ItemGroup>
 
